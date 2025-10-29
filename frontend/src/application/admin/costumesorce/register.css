@@ -1,0 +1,30 @@
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.fornt{
+    width: 1303px;
+    height: 900px;
+    background-image: url('https://tse1.mm.bing.net/th/id/OIP.HuI_lRO5Bk6PAZNSRtBUZQHaE8?w=2048&h=1366&rs=1&pid=ImgDetMain&o=7&rm=3');
+    border: 1px solid rebeccapurple;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+}
+
+.left{
+    width: 600px;
+    height: 650px;
+    background-color: rgb(21, 184, 184);
+    gap: 0;
+}
+
+.right{
+    width: 600px;
+    height: 650px;
+    background-color: whitesmoke;
+    gap: 0;
+}
