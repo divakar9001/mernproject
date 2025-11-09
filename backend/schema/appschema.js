@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const schematype = new mongoose.Schema({
-    Name:{
+    name:{
       type: String 
     },
     email:{

@@ -1,44 +1,58 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import {Link, useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Adminlogin = () => {
 
     const navigate = useNavigate();
     const [data, setValue] = useState({
-        email: "divakarbug01@gmail.com",
-        passward: "122344"
+        email: '',
+        passward: ""
     });
 
-    const handler = (email) => {
+    const handler = (p) => {
         //  console.log(email.target.value);
         // let name = email.target.name;
         // let value = email.target.value;
 
-        const { name, value } = email.target;
+        const { name, value } = p.target;
 
-        setValue((prev) => ({
-            ...prev,
-            [name]: value,
-           
-        }));
+        setValue((prev) => {
+            return {
+                ...prev,
+                [name]: value,
+            }
+
+
+        });
     };
 
-    const handelsubmit = (submit) => {
+    const handelsubmit = async (submit) => {
         submit.preventDefault();
+        await axios.post("http://localhost:5500/login", data).then((d) => {
+            console.log(d)
 
-        if(data.email == ''||data.passward ==''){
-            toast.warning('eamil and passward are required',{position:'top-left',autoClose:2000,theme:'dark'});
-        }
-        else{
+            if (d.data.status == 413) {
+                toast.warn(d.data.msg);
+            }
 
-            toast.success('Successfull login',{position:'top-left',autoClose:2000,theme:'dark'})
-            console.log(data);
-            setTimeout(()=>{
-                navigate('/landing')
-            },2000)
-        }
-        
+            if (d.data.status == 201) {
+
+                toast.success(d.data.msg);
+                setTimeout(() => {
+                    navigate('welcome')
+                }, 2000);
+            }
+
+
+
+
+        });
+
+
+
+
     }
 
     return (
@@ -49,7 +63,7 @@ export const Adminlogin = () => {
                         <div className='row '>
                             <div className='col-12 text-center'>
                                 <p className='h4 pb-4'>App login page</p>
-                                <ToastContainer/>
+                                <ToastContainer />
                             </div>
                             <form onSubmit={handelsubmit}>
                                 <div className='col-12'>
