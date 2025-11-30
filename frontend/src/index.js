@@ -22,6 +22,7 @@ root.render(
                 <Route path='welcome' element={<Welcome/>}>
                     <Route path='' element={<Landing/>}></Route>
                     <Route path='show/:id' element={<Showdetailis/>}></Route>
+                    <Route path='edit/:id' element={<Useredit/>}></Route>
 
                 </Route>
             </Routes>

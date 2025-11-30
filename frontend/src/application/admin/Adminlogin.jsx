@@ -33,12 +33,21 @@ export const Adminlogin = () => {
         await axios.post("http://localhost:5500/login", data).then((d) => {
             console.log(d)
 
-            if (d.data.status == 413) {
+            if (d.data.status === 420) {
+                toast.warn(d.data.msg);
+            }
+
+
+            if(d.data.status === 413){
+                toast.warn(d.data.msg);
+            }
+
+            if(d.data.status === 405){
                 toast.warn(d.data.msg);
             }
 
             if (d.data.status == 201) {
-
+                localStorage.setItem('token',d.data.token)
                 toast.success(d.data.msg);
                 setTimeout(() => {
                     navigate('welcome')

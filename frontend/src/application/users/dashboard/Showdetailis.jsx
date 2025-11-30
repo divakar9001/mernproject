@@ -7,7 +7,8 @@ function Showdetailis() {
 
   const {id} = useParams();
   const showdata = async()=>{
-    await axios.get(`http://localhost:5500/singledata/${id}`).then((d)=>{
+   let token =  localStorage.getItem('token')
+    await axios.get(`http://localhost:5500/singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((d)=>{
       // console.log(d.data.singeldata);
       setUpdate(d.data.singeldata)
     })

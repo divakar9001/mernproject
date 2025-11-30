@@ -1,21 +1,17 @@
 const express = require('express');
-
-// console.log(express);
-const myapp = express();
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const myrouting = require("./routing/approuting");
-const dataurl = require('./database/mydb');
+require('./database/mydb')
+const app = express();     // <-- THIS IS THE PRIORITY (CORRECT PLACE)
 
-const port = process.env.PORT ||7700
+app.use(express.json());
+app.use(cors());
 
-myapp.use(express.json());
-myapp.use(cors());
-myapp.use(myrouting);
+app.use(require('./routing/approuting'));
 
-
-
-
-myapp.listen(5500,()=>{
-    console.log(`welcome to exprss at port: ${port} `)
+const port = process.env.PORT || 7700;
+app.listen(port, () => {
+    console.log('Server running on port', port);
 });
