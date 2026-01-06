@@ -1,31 +1,32 @@
-.cususer
-{
-    border-radius: 50%;
-    width: 80px;
-    overflow: hidden;
-    
+.cususer {
+  border-radius: 50%;
+  width: 80px;
+  overflow: hidden;
+
 }
-.cususer img
-{
-    border-radius: 50%;
-    width: 80px;
-    transform: scale(1.5,1.5);
-    border:1px solid gray;
+
+.cususer img {
+  border-radius: 50%;
+  width: 80px;
+  transform: scale(1.5, 1.5);
+  border: 1px solid gray;
 }
-.cus-flex
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+
+.cus-flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.cus-flex p
-{
-    flex:1;
+
+.cus-flex p {
+  flex: 1;
 }
 
 /* css for sidebar-------*/
 
-.dropdown-toggle { outline: 0; }
+.dropdown-toggle {
+  outline: 0;
+}
 
 .btn-toggle {
   padding: .25rem .5rem;
@@ -33,6 +34,7 @@
   color: var(--bs-emphasis-color);
   background-color: transparent;
 }
+
 .btn-toggle:hover,
 .btn-toggle:focus {
   color: rgba(var(--bs-emphasis-color-rgb), .85);
@@ -54,6 +56,7 @@
 .btn-toggle[aria-expanded="true"] {
   color: rgba(var(--bs-emphasis-color-rgb), .85);
 }
+
 .btn-toggle[aria-expanded="true"]::before {
   transform: rotate(90deg);
 }
@@ -63,6 +66,7 @@
   margin-top: .125rem;
   margin-left: 1.25rem;
 }
+
 .btn-toggle-nav a:hover,
 .btn-toggle-nav a:focus {
   background-color: var(--bs-tertiary-bg);
@@ -74,19 +78,43 @@
 
 /*end of sidebar css---------------------*/
 
-.cus-bg
-{
-    background-color: #ece1cd;
-}
-.cus-page
-{
-    min-height: 92vh;
+.cus-bg {
+  background-color: #ece1cd;
 }
 
-.myloader
-{
-  color:white;
-  padding:80px;
+.cus-page {
+  min-height: 92vh;
+}
+
+.myloader {
+  color: white;
+  padding: 80px;
   text-align: center;
   background-color: red;
+}
+
+table {
+  table-layout: fixed;
+  width: fit-content;
+
+}
+
+/* tr{
+     box-sizing: border-box;
+      width: 180px;
+       overflow: hidden;
+  } */
+.changesize {
+  cursor: pointer;
+  height: fit-content;
+  overflow: hidden;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ertext{
+  font-size: 10rem;
+
 }

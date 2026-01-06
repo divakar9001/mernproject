@@ -29,6 +29,14 @@ function Landing() {
 
     }
 
+    // const changes = ()=>{
+    //      var a = document.getElementsByClassName('changesize');
+    // a[0].addEventListener('click',()=>{
+    //     a[0].classList.toggle('changesize');
+    // })
+    // }
+   
+
     const deleteuser = async(id)=>{
         await axios.delete(`http://localhost:5500/deleteuser/${id}`).then((data)=>{
             console.log(data);
@@ -46,6 +54,7 @@ function Landing() {
                 <div className='row'>
                     <div className='col-md-12'>
                         <ToastContainer/>
+                        <div className='row'>
                         <div className="card text-bg-light mb-3">
                             <div className="card-body shadow">
                                 <table className='table'>
@@ -56,7 +65,6 @@ function Landing() {
                                             <th scope="col">Email</th>
                                             <th scope="col">age</th>
                                             <th scope="col">phone</th>
-                                            <th scope="col">pass</th>
                                             <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
@@ -64,9 +72,9 @@ function Landing() {
                                         {set.map((r) => {
                                             return (
                                                 <tr key={r._id}>
-                                                    <td>{r._id}</td>
+                                                    <td className='changesize' onClick={(e) => e.target.classList.toggle("changesize")}>{r._id}</td>
                                                     <td>{r.name}</td>
-                                                    <td>{r.email}</td>
+                                                    <td className='changesize' onClick={(e) => e.target.classList.toggle("changesize")}>{r.email}</td>
                                                     <td>{r.age}</td>
                                                     <td>{r.phone}</td>
                                                     {/* <td>{r.passward}</td> */}
@@ -82,6 +90,7 @@ function Landing() {
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

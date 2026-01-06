@@ -29,40 +29,47 @@ function Useredit() {
   }
 
   const navi = useNavigate();
-  
-   let token = localStorage.getItem('token');
+
+  let token = localStorage.getItem('token');
   const callapi = async () => {
-   
-    await axios.get(`http://localhost:5500/singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((f)=>{
+
+    await axios.get(`http://localhost:5500/singledata/${id}`, { headers: { authorization: `Bearer ${token}` } }).then((f) => {
       // console.log(f.data.singeldata[0]);
-      setUpdate(f.data.singeldata[0]);
+      if(f.data?.singeldata?.length > 0){
+         setUpdate(f.data.singeldata[0]);
+        
+      }
+      else{
+       toast.warn("unauthorized user")
+      }
+      
     });
   }
   useEffect(() => {
-      callapi();
-    }, [])
+    callapi();
+  }, [])
 
-  
+
 
   const mycontrol = async (d) => {
 
-    await axios.patch(`http://localhost:5500/update/${id}`,set,{headers :{ authorization: `Bearer ${token}`}}).then((t)=>{
+    await axios.patch(`http://localhost:5500/update/${id}`, set, { headers: { authorization: `Bearer ${token}` } }).then((t) => {
       console.log(t);
 
-      if(t.data.status == 251){
+      if (t.data.status == 251) {
         toast.success(t.data.msg);
-         setTimeout(() => {
+        setTimeout(() => {
           navi('/');
         }, 1000)
       }
 
-     
+
     });
-    
 
-       
 
-    }
+
+
+  }
   return (
 
     <div className='container'>

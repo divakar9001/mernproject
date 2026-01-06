@@ -1,16 +1,26 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { ToastContainer,toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
 function Showdetailis() {
-  const [set,setUpdate] = useState([]);
+  const [set,setUpdate] = useState({});
 
   const {id} = useParams();
   const showdata = async()=>{
    let token =  localStorage.getItem('token')
     await axios.get(`http://localhost:5500/singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((d)=>{
+
+      if(!d.data.singeldata && d.data.status == 402){
+        toast.warning('unauthorised user')
+      }
+     
       // console.log(d.data.singeldata);
-      setUpdate(d.data.singeldata)
+      else{
+        
+        setUpdate(d.data.singeldata)
+      }
+      
     })
   }
 
@@ -21,12 +31,13 @@ function Showdetailis() {
   return (
     <div className='container-fulid'>
       <div className='row'>
+        <ToastContainer/>
         <div className='col-md-8'>
           <div className='container'>
             <div className='row shodow '>
               <div className='col-md-6'>
 
-              {set.map((s)=>{
+              {/* {set.map((s)=>{
                 return(
                   <div key={s._id}>
                     {s._id}
@@ -35,9 +46,17 @@ function Showdetailis() {
                     <h2>phone:{s.phone}</h2>
                     <h2>age:{s.age}</h2>
                   </div>
-                  
                 )
-              })}
+              })} */}
+                 <div key={set._id}>
+                    {set._id}
+                    <h2>email:{set.email}</h2>
+                    <h2>passward:{set.passward}</h2>
+                    <h2>phone:{set.phone}</h2>
+                    <h2>age:{set.age}</h2>
+                  </div>
+              
+              
               </div>
             </div>
           </div>
@@ -48,3 +67,4 @@ function Showdetailis() {
 }
 
 export default Showdetailis
+

@@ -38,30 +38,26 @@ export const Adminlogin = () => {
             }
 
 
-            if(d.data.status === 413){
+            if (d.data.status === 413) {
                 toast.warn(d.data.msg);
             }
 
-            if(d.data.status === 405){
+            if (d.data.status === 405) {
                 toast.warn(d.data.msg);
             }
-
-            if (d.data.status == 201) {
-                localStorage.setItem('token',d.data.token)
+            if (d.data.msg === 'admin') {
+                localStorage.setItem('token', d.data.token)
                 toast.success(d.data.msg);
                 setTimeout(() => {
                     navigate('welcome')
-                }, 2000);
+                }, 2000)
+            }
+            if (d.data.status == 201) {
+                toast.success(d.data.msg);
+
             }
 
-
-
-
         });
-
-
-
-
     }
 
     return (
@@ -105,6 +101,4 @@ export const Adminlogin = () => {
         </div >
     )
 }
-
-
 

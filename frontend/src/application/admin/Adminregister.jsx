@@ -11,12 +11,15 @@ function Adminregister() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const mycontrol = async (d) => {
-
+        // console.log(d);
         await axios.post("http://localhost:5500/registerusers", d).then((f) => {
             console.log(f.data.mydata);
             setUpdate(f.data.mydata)
             if (f.data.status == 321) {
                 toast.warn(f.data.msg, { position: 'top-left', autoClose: 2000, theme: 'dark' });
+            }
+            if(f.data.status == 322){
+                toast.warn(f.data.msg);
             }
             if (f.data.status == 221) {
                 toast.success(f.data.msg, { position: 'top-left', autoClose: 2000, theme: 'dark' });
@@ -65,14 +68,14 @@ function Adminregister() {
                                 <div className='col-md-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>FullName</label>
-                                        <input className='form-control' type='text' name='name' value={set.name}  {...register("name")}></input>
+                                        <input className='form-control' type='text' name='name'   {...register("name")}></input>
                                     </div>
                                 </div>
 
                                 <div className='col-md-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>EmailAddress</label>
-                                        <input className='form-control' type='email' value={set.email} name='email' {...register("email")}></input>
+                                        <input className='form-control' type='email'name='email' {...register("email")}></input>
                                         {/* {errors.email && <p className='text-danger'>email is required</p>} */}
                                     </div>
                                 </div>
@@ -80,7 +83,7 @@ function Adminregister() {
                                 <div className='col-md-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>Passward</label>
-                                        <input className='form-control' type='text' value={set.passward} {...register('passward')}></input>
+                                        <input className='form-control' name='passward' type='text' {...register('passward')}></input>
                                     </div>
                                 </div>
 
@@ -89,7 +92,7 @@ function Adminregister() {
                                 <div className='col-md-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>phoneNo</label>
-                                        <input className='form-control' type='text' value={set.phone} {...register('phone')}></input>
+                                        <input className='form-control' name='phone' type='text'  {...register('phone')}></input>
                                     </div>
                                 </div>
 
@@ -97,7 +100,7 @@ function Adminregister() {
                                 <div className='col-md-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>age</label>
-                                        <input className='form-control' type='number' value={set.age} {...register('age')}></input>
+                                        <input className='form-control' name='age' type='number'  {...register('age')}></input>
                                     </div>
                                 </div>
 

@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(require('./routing/approuting'));
+app.use(require('./routing/productRouting'));
 
 const port = process.env.PORT || 7700;
 app.listen(port, () => {

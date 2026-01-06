@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.css";
@@ -10,6 +10,8 @@ import Welcome from './application/users/userdashboard/Welcome';
 import Landing from './application/users/userdashboard/Landing';
 import Useredit from './application/users/dashboard/Useredit';
 import Showdetailis from './application/users/dashboard/Showdetailis';
+import Error from './application/users/share/Error';
+const Loader = lazy(()=>import("./application/users/share/Loader"));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,8 +25,10 @@ root.render(
                     <Route path='' element={<Landing/>}></Route>
                     <Route path='show/:id' element={<Showdetailis/>}></Route>
                     <Route path='edit/:id' element={<Useredit/>}></Route>
-
+                    <Route path='loder'element={<Suspense fallback={<h1 className='myloading'>Loading page...</h1>}/>}></Route>
+                    <Route path='*' element={<Error/>}></Route> 
                 </Route>
+                <Route path='*' element={<Error/>}></Route>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

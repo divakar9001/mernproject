@@ -3,7 +3,7 @@ const mykey = "qqwewerweuyyszewdwdws";
 
  function verifyToken(req, res, next) {
  let token = req.headers.authorization;
-    console.log("mytoken" + token);
+    // console.log("mytoken" + token);
   if (!token) {
     return res.status(401).send('Token is requirede');
   }

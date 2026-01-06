@@ -19,6 +19,8 @@ const schematype = new mongoose.Schema({
     
 });
 
+;
+
 const basicdata = mongoose.model('normaldata',schematype);  // create a model of data
 
 module.exports = basicdata;
