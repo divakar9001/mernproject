@@ -30,35 +30,42 @@ export const Adminlogin = () => {
     };
 
     const handelsubmit = async (submit) => {
-        submit.preventDefault();
-        await axios.post(`${API_URL}/login`, data).then((d) => {
-            console.log(d)
+        try {
+            submit.preventDefault();
+           var a =  await axios.post(`${API_URL}/login`, data).then((d) => {
+                console.log(d)
 
-            if (d.data.status === 420) {
-                toast.warn(d.data.msg);
-            }
+                if (d.data.status === 420) {
+                    toast.warn(d.data.msg);
+                }
 
 
-            if (d.data.status === 413) {
-                toast.warn(d.data.msg);
-            }
+                if (d.data.status === 413) {
+                    toast.warn(d.data.msg);
+                }
 
-            if (d.data.status === 405) {
-                toast.warn(d.data.msg);
-            }
-            if (d.data.msg === 'admin') {
-                localStorage.setItem('token', d.data.token)
-                toast.success(d.data.msg);
-                setTimeout(() => {
-                    navigate('welcome')
-                }, 2000)
-            }
-            if (d.data.status == 201) {
-                toast.success(d.data.msg);
+                if (d.data.status === 405) {
+                    toast.warn(d.data.msg);
+                }
+                if (d.data.msg === 'admin') {
+                    localStorage.setItem('token', d.data.token)
+                    toast.success(d.data.msg);
+                    setTimeout(() => {
+                        navigate('welcome')
+                    }, 2000)
+                }
+                if (d.data.status == 201) {
+                    toast.success(d.data.msg);
 
-            }
+                }
 
-        });
+            });
+        }
+
+        catch(errors){
+            console.log(a.errors);
+        }
+       
     }
 
     return (
