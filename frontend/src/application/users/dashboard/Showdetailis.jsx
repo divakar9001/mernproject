@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { ToastContainer,toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
+import { API_URL } from '../../admin/costumesorce/Appcontroal';
 
 function Showdetailis() {
   const [set,setUpdate] = useState({});
@@ -9,7 +10,7 @@ function Showdetailis() {
   const {id} = useParams();
   const showdata = async()=>{
    let token =  localStorage.getItem('token')
-    await axios.get(`http://localhost:5500/singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((d)=>{
+    await axios.get(`${API_URL}/singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((d)=>{
 
       if(!d.data.singeldata && d.data.status == 402){
         toast.warning('unauthorised user')

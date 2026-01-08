@@ -3,6 +3,7 @@ import React ,{toast,ToastContainer} from 'react-toastify'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
+import { API_URL } from '../../admin/costumesorce/Appcontroal';
 
 function Landing() {
     const [set, setUpdate] = useState([]);
@@ -12,7 +13,7 @@ function Landing() {
     // console.log(a);
     const fetchdata = async () => {
         let token = localStorage.getItem('token');
-        await axios.get("http://localhost:5500/myusers" ,{headers :{ Authorization: `Bearer ${token}`}}).then((d) => {
+        await axios.get(`${API_URL}/myusers`,{headers :{ Authorization: `Bearer ${token}`}}).then((d) => {
             console.log(d.data.data);
             if(!d.data.data){
                 toast.warn('login mandatory');
@@ -38,7 +39,7 @@ function Landing() {
    
 
     const deleteuser = async(id)=>{
-        await axios.delete(`http://localhost:5500/deleteuser/${id}`).then((data)=>{
+        await axios.delete(`${API_URL}/deleteuser/${id}`).then((data)=>{
             console.log(data);
             fetchdata();
         })

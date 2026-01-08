@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
+import { API_URL } from './costumesorce/Appcontroal';
 
 
 function Adminregister() {
@@ -12,7 +13,7 @@ function Adminregister() {
 
     const mycontrol = async (d) => {
         // console.log(d);
-        await axios.post("http://localhost:5500/registerusers", d).then((f) => {
+        await axios.post(`${API_URL}/register`, d).then((f) => {
             console.log(f.data.mydata);
             setUpdate(f.data.mydata)
             if (f.data.status == 321) {
