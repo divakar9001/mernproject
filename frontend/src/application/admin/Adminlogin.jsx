@@ -31,7 +31,7 @@ export const Adminlogin = () => {
 
     const handelsubmit = async (submit) => {
         submit.preventDefault();
-        await axios.post(`${API_URL}login`, data).then((d) => {
+        await axios.post(`${API_URL}/login`, data).then((d) => {
             console.log(d)
 
             if (d.data.status === 420) {
