@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { API_URL } from './costumesorce/Appcontroal';
+import { API1_URL } from './costumesorce/Appcontroal';
 import axios from 'axios';
 
 export const Adminlogin = () => {
@@ -32,7 +32,7 @@ export const Adminlogin = () => {
     const handelsubmit = async (submit) => {
         try {
             submit.preventDefault();
-           var a =  await axios.post(`${API_URL}/login`, data).then((d) => {
+           var a =  await axios.post(`${API1_URL}/login`, data).then((d) => {
                 console.log(d)
 
                 if (d.data.status === 420) {
