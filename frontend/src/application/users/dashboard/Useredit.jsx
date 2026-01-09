@@ -54,7 +54,7 @@ function Useredit() {
 
   const mycontrol = async (d) => {
 
-    await axios.patch(`${API_URL}/update/${id}`, set, { headers: { authorization: `Bearer ${token}` } }).then((t) => {
+    await axios.patch(`${API_URL}update/${id}`, set, { headers: { authorization: `Bearer ${token}` } }).then((t) => {
       console.log(t);
 
       if (t.data.status == 251) {
