@@ -63,7 +63,7 @@ export const Adminlogin = () => {
         }
 
         catch(errors){
-            console.log(a.errors);
+            console.log(errors);
         }
        
     }
