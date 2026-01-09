@@ -32,7 +32,7 @@ export const Adminlogin = () => {
     const handelsubmit = async (submit) => {
         try {
             submit.preventDefault();
-           var a =  await axios.post(`${API_URL}login`, data).then((d) => {
+           var a =  await axios.post(`${API_URL}/login`, data).then((d) => {
                 console.log(d)
 
                 if (d.data.status === 420) {

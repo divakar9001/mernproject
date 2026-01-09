@@ -10,7 +10,7 @@ function Showdetailis() {
   const {id} = useParams();
   const showdata = async()=>{
    let token =  localStorage.getItem('token')
-    await axios.get(`${API_URL}singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((d)=>{
+    await axios.get(`${API_URL}/singledata/${id}`,{headers :{ authorization: `Bearer ${token}`}}).then((d)=>{
 
       if(!d.data.singeldata && d.data.status == 402){
         toast.warning('unauthorised user')

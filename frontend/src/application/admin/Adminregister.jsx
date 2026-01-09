@@ -13,7 +13,7 @@ function Adminregister() {
 
     const mycontrol = async (d) => {
         // console.log(d);
-        await axios.post(`${API_URL}register`, d).then((f) => {
+        await axios.post(`${API_URL}/register`, d).then((f) => {
             console.log(f.data.mydata);
             setUpdate(f.data.mydata)
             if (f.data.status == 321) {

@@ -13,7 +13,7 @@ function Landing() {
     // console.log(a);
     const fetchdata = async () => {
         let token = localStorage.getItem('token');
-        await axios.get(`${API_URL}myusers`,{headers :{ Authorization: `Bearer ${token}`}}).then((d) => {
+        await axios.get(`${API_URL}/myusers`,{headers :{ Authorization: `Bearer ${token}`}}).then((d) => {
             console.log(d.data.data);
             if(!d.data.data){
                 toast.warn('login mandatory');
