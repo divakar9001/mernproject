@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,6 +9,7 @@ import { API_URL } from '../../admin/costumesorce/Appcontroal';
 
 function Useredit() {
   const { register, handleSubmit } = useForm();
+  const navi = useNavigate();
   const { id } = useParams();
   const [set, setUpdate] = useState({
     name: '',
@@ -16,6 +18,30 @@ function Useredit() {
     phone: '',
     age: ''
   });
+
+
+
+
+  let token = localStorage.getItem('token');
+  const callapi = async () => {
+
+    await axios.get(`${API_URL}/singledata/${id}`, { headers: { authorization: `Bearer ${token}` } }).then((f) => {
+      console.log(f.data.singeldata);
+      if (f.data.status==402) {
+        toast.warn("unauthorized user");
+
+      }
+      else {
+        setUpdate(f.data.singeldata);
+      }
+     
+
+     });
+  }
+  useEffect(() => {
+    callapi();
+  }, [])
+
 
   const fildata = (fil) => {
     // console.log(fil);
@@ -28,29 +54,6 @@ function Useredit() {
       }
     })
   }
-
-  const navi = useNavigate();
-
-  let token = localStorage.getItem('token');
-  const callapi = async () => {
-
-    await axios.get(`${API_URL}/singledata/${id}`, { headers: { authorization: `Bearer ${token}` } }).then((f) => {
-      // console.log(f.data.singeldata[0]);
-      if(f.data?.singeldata?.length > 0){
-         setUpdate(f.data.singeldata[0]);
-        
-      }
-      else{
-       toast.warn("unauthorized user")
-      }
-      
-    });
-  }
-  useEffect(() => {
-    callapi();
-  }, [])
-
-
 
   const mycontrol = async (d) => {
 
@@ -165,3 +168,4 @@ function Useredit() {
 }
 
 export default Useredit
+

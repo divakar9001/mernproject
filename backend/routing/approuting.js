@@ -64,13 +64,13 @@ myapp.post("/registerusers", async (req, res) => {
 
 myapp.get("/singledata/:id", verifyuser, async (req, res) => {
     
-    const {id} = req.params;
+    const id = req.params.id;
     
     
     const data = await myschema.findOne({ _id:id });
     
     if(!data){
-       console.log("okokokk")
+       console.log("not")
        return res.send({msg:'user not found',status:402})
     }
     // console.log(data);
@@ -169,13 +169,32 @@ myapp.post("/login", async (req, res) => {
 
 
 
-myapp.patch('/update/:id', verifyuser, async (req, res) => {
-    const id = req.params.id;
-    const mydata = { name, email, passward, phone, age } = req.body;
-    const updateuser = await myschema.findByIdAndUpdate(id, mydata, { new: true });
-    res.send({ msg: "user update successfully", status: 251, data: updateuser });
+// myapp.patch('/update/:id', verifyuser, async (req, res) => {
+//     const id = req.params.id;
+//     const mydata = { name, email, passward, phone, age } = req.body;
+//     const updateuser = await myschema.findByIdAndUpdate(id, mydata, { new: true });
+//     res.send({ msg: "user update successfully", status: 251, data: updateuser });
 
-})
+// })
+
+myapp.patch('/update/:id', verifyuser, async (req, res) => {
+  const id = req.params.id;
+
+  const { name, email, passward, phone, age } = req.body;
+
+  const updateuser = await myschema.findByIdAndUpdate(
+    id,
+    { name, email, passward, phone, age },
+    { new: true }
+  );
+
+  res.send({
+    msg: "user update successfully",
+    status: 251,
+    data: updateuser
+  });
+});
+
 
 myapp.get("/myusers", verifyuser, async (req, res) => {
     const users = await myschema.find();
