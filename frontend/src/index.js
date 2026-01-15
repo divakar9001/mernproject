@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-import './application/admin/costumesorce/register.css';
+import './application/admin/costumesorce/global.css';
 import { Adminlogin } from './application/admin/Adminlogin';
 import Adminregister from './application/admin/Adminregister';
 import Welcome from './application/users/userdashboard/Welcome';
@@ -25,7 +25,9 @@ root.render(
                     <Route path='' element={<Landing/>}></Route>
                     <Route path='show/:id' element={<Showdetailis/>}></Route>
                     <Route path='edit/:id' element={<Useredit/>}></Route>
-                    <Route path='loder'element={<Suspense fallback={<h1 className='myloading'>Loading page...</h1>}/>}></Route>
+                    <Route path='loder' element={<Suspense fallback={<h1 className='myloader'>Loading Page...</h1>}>
+                        <Loader/>
+                    </Suspense>}></Route>
                     <Route path='*' element={<Error/>}></Route> 
                 </Route>
                 <Route path='*' element={<Error/>}></Route>

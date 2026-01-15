@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 function Error() {
     return (
-       <div className="container-fluid text-center" style={{ height: '90vh' }}>
-            <div className="row mt-2 bg-danger justify-content-center">
+       <div className="container-fluid text-center" >
+            <div className="row mt-2 bg-danger justify-content-center" style={{ minHeight: '60vh' }}>
                 <div className="col-sm-10 ">
                     <div className="h1  ertext">Oops!</div>
                 </div>
