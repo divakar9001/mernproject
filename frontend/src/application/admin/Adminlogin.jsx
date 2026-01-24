@@ -56,7 +56,9 @@ export const Adminlogin = () => {
                 }
                 if (d.data.status == 201) {
                     toast.success(d.data.msg);
-                    
+                    setTimeout(() => {
+                        navigate('welcome/userpage')
+                    }, 2000);
 
                 }
 
