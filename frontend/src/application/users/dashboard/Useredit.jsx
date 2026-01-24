@@ -27,7 +27,7 @@ function Useredit() {
 
     await axios.get(`${API_URL}/singledata/${id}`, { headers: { authorization: `Bearer ${token}` } }).then((f) => {
       console.log(f.data.singeldata);
-      if (f.data.status==402) {
+      if (f.data.status===402) {
         toast.warn("unauthorized user");
 
       }
@@ -38,10 +38,10 @@ function Useredit() {
 
      });
   }
-  useEffect(() => {
+  
+  useEffect(()=>{
     callapi();
-  }, [])
-
+  },[]);
 
   const fildata = (fil) => {
     // console.log(fil);
@@ -60,7 +60,7 @@ function Useredit() {
     await axios.patch(`${API_URL}/update/${id}`, set, { headers: { authorization: `Bearer ${token}` } }).then((t) => {
       console.log(t);
 
-      if (t.data.status == 251) {
+      if (t.data.status === 251) {
         toast.success(t.data.msg);
         setTimeout(() => {
           navi('/');
@@ -79,7 +79,7 @@ function Useredit() {
     <div className='container'>
       <div className='row border shadow mt-2'>
         <div className='col-12 d-flex'>
-          <div className='container-fulid'>
+          <div className='container-fluid'>
             <ToastContainer />
             <div className='row'>
               <div className='col-md-6'>

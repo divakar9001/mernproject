@@ -118,3 +118,17 @@ table {
   font-size: 10rem;
 
 }
+
+.bg1{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid red; */
+  background-image: url("https://img.freepik.com/premium-photo/portrait-pleased-female-tourist-relishing-mountaintop-experience_209484-21435.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.costum-bold{
+  font-weight: 700 !important;
+}

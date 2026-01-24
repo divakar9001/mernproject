@@ -22,15 +22,13 @@ myapp.post("/registerusers", async (req, res) => {
                 msg: "email and password are required",
                 status: 321
             });
+
         }
 
         const isRegister = await myschema.findOne({ email });
 
         if (isRegister) {
-            return res.send({
-                msg: "Already Register",
-                status: 322
-            });
+            return res.send({ msg: "Already Register", status: 322 });
         }
 
         const hashPass = await bcrypt.hash(passward, 10);
@@ -44,16 +42,10 @@ myapp.post("/registerusers", async (req, res) => {
         // });
 
         // await data.save();
-        await myschema({
-            name,
-            email,
-            passward: hashPass,
-            phone,
-            age
-        }).save();
-
-        return res.send({ msg: "User registered successfully", status: 221});
-    } catch (error) {
+        await myschema({ name, email, passward: hashPass, phone, age }).save();
+        return res.send({ msg: "User registered successfully", status: 221 });
+    }
+    catch (error) {
         console.error(error);
         return res.status(500).send({
             msg: "Server error",
@@ -63,22 +55,20 @@ myapp.post("/registerusers", async (req, res) => {
 })
 
 myapp.get("/singledata/:id", verifyuser, async (req, res) => {
-    
+
     const id = req.params.id;
-    
-    
-    const data = await myschema.findOne({ _id:id });
-    
-    if(!data){
-       console.log("not")
-       return res.send({msg:'user not found',status:402})
+    const data = await myschema.findOne({ _id: id });
+
+    if (!data) {
+        console.log("not")
+        return res.send({ msg: 'user not found', status: 402 })
     }
     // console.log(data);
-    else{
+    else {
         res.send({ msg: "users data", status: 205, singeldata: data });
         console.log("yesyes")
     }
-    
+
 });
 
 // myapp.get("/singledata/:id", verifyuser, async (req, res) => {
@@ -125,19 +115,17 @@ myapp.post("/login", async (req, res) => {
 
 
         const matchPass = await bcrypt.compare(passward, loginusers.passward);
-        if (email === 'divakarbug01@gmail.com' && matchPass) {
-            const usertoken = jwt.sign({ email: loginusers.email }, mykey, { expiresIn: '40m' });
-            res.set("authorization", `Bearer ${usertoken}`);
-           return res.send({ msg: "admin", status: 220, token: usertoken });
-            
-        }
-
-        if (!matchPass) {
+         if (!matchPass) {
 
             return res.send({ msg: "password is not match", status: 420 });
         }
+        if (email === 'divakarbug01@gmail.com' && matchPass) {
+            const usertoken = jwt.sign({ email: loginusers.email }, mykey, { expiresIn: '1m' });
+            res.set("authorization", `Bearer ${usertoken}`);
+            return res.send({ msg: "admin", status: 220, token: usertoken });
 
-        res.send({status:201,msg:'only userdata'})
+        }
+        res.send({ status: 201, msg: 'only users'});
 
     }
 });
@@ -178,21 +166,21 @@ myapp.post("/login", async (req, res) => {
 // })
 
 myapp.patch('/update/:id', verifyuser, async (req, res) => {
-  const id = req.params.id;
+    const id = req.params.id;
 
-  const { name, email, passward, phone, age } = req.body;
+    const { name, email, passward, phone, age } = req.body;
 
-  const updateuser = await myschema.findByIdAndUpdate(
-    id,
-    { name, email, passward, phone, age },
-    { new: true }
-  );
+    const updateuser = await myschema.findByIdAndUpdate(
+        id,
+        { name, email, passward, phone, age },
+        { new: true }
+    );
 
-  res.send({
-    msg: "user update successfully",
-    status: 251,
-    data: updateuser
-  });
+    res.send({
+        msg: "user update successfully",
+        status: 251,
+        data: updateuser
+    });
 });
 
 

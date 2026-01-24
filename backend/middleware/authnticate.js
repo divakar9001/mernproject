@@ -22,4 +22,4 @@ const mykey = "qqwewerweuyyszewdwdws";
 
 }
 
-module.exports = verifyToken
+module.exports = verifyToken;

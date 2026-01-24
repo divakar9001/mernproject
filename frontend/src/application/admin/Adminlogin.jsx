@@ -51,11 +51,12 @@ export const Adminlogin = () => {
                     localStorage.setItem('token', d.data.token)
                     toast.success(d.data.msg);
                     setTimeout(() => {
-                        navigate('welcome')
+                        navigate('welcome/landing')
                     }, 2000)
                 }
                 if (d.data.status == 201) {
                     toast.success(d.data.msg);
+                    
 
                 }
 

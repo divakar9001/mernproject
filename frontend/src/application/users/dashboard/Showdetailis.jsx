@@ -19,7 +19,7 @@ function Showdetailis() {
       // console.log(d.data.singeldata);
       else{
         
-        setUpdate(d.data.singeldata)
+        setUpdate(d.data.singeldata);
       }
       
     })
@@ -30,7 +30,7 @@ function Showdetailis() {
   },[])
   
   return (
-    <div className='container-fulid'>
+    <div className='container-fluid'>
       <div className='row'>
         <ToastContainer/>
         <div className='col-md-8'>
@@ -38,7 +38,7 @@ function Showdetailis() {
             <div className='row shodow '>
               <div className='col-md-6'>
 
-              {/* {set.map((s)=>{
+              {/* { {set.map((s)=>{
                 return(
                   <div key={s._id}>
                     {s._id}
@@ -48,15 +48,15 @@ function Showdetailis() {
                     <h2>age:{s.age}</h2>
                   </div>
                 )
-              })} */}
-                 <div key={set._id}>
-                    {set._id}
+              })} } */}
+                
+               <div key={set._id} >
+                   <h1>user id:{set._id}</h1> 
                     <h2>email:{set.email}</h2>
                     <h2>passward:{set.passward}</h2>
                     <h2>phone:{set.phone}</h2>
                     <h2>age:{set.age}</h2>
                   </div>
-              
               
               </div>
             </div>
