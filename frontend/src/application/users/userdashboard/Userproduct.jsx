@@ -145,7 +145,7 @@ function Userproduct() {
           <div className="col-sm-8 border mt-2 p-2 oversk " style={{height:'100vh'}}>
             <div className="row">
               {mobile.map((p, index) => (
-                <div className="col-sm-12  mb-3 d-flex" key={index}>
+                <div className="col-sm-12 norclass  mb-3 d-flex" key={index}>
                   {/* Images */}
                   <div className="col-sm-3  p-2">
                     {p.image?.map((img, i) => (
