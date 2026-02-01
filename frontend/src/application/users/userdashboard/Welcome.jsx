@@ -10,8 +10,8 @@ function Welcome() {
     <Header></Header>
     <div className='container-fluid'>
         <div className='row cus-page'>
-            <div className='col-md-2 cus-bg'>
-                <Sidebar></Sidebar>
+            <div className='col-md-2 cus-bg' >
+                <Sidebar style={{height:"96vh"}}></Sidebar>
             </div>
             <div className='col-md-10 bg-light'>
                    <Outlet>  </Outlet>
