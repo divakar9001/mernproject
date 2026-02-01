@@ -85,13 +85,14 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { API_URL } from "../../admin/costumesorce/Appcontroal";
 
 function Userproduct() {
   const [mobile, setMobile] = useState([]);
 
   const getmobile = async () => {
     try {
-      const res = await axios.get("http://localhost:5500/alldata");
+      const res = await axios.get(`${API_URL}/alldata`);
       console.log(res.data.data)
       setMobile(res.data.data);
     } catch (error) {
