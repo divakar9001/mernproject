@@ -36,20 +36,20 @@ function Adminregister() {
         
         <div className='container'>
             <div className='row border shadow mt-2'>
-                <div className='col-12 d-flex'>
+                <div className='col-sm-12 d-flex'>
                     <div className='container-fulid'>
                         <ToastContainer />
                         <div className='row'>
-                            <div className='col-md-6'>
-                                <div className='col-12  mt-5'>
+                            <div className='col-sm-6'>
+                                <div className='col-sm-12  mt-5'>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies</p>
                                 </div>
 
-                                <div className='col-12  mt-5'>
+                                <div className='col-sm-12  mt-5'>
                                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies</p>
                                 </div>
 
-                                <div className='col-12  mt-5'>
+                                <div className='col-sm-12  mt-5'>
                                     <Link to='/' className='ms-3'>
                                         <button>alradey have an account</button>
                                     </Link>
@@ -59,21 +59,21 @@ function Adminregister() {
                     </div>
                     <div className='container'>
                         <div className='row'>
-                            <div className='col-12 text-center'>
+                            <div className='col-sm-12 text-center'>
                                 <p className='h3 mb-3'>Registor page</p>
                             </div>
                         </div>
                         <form onSubmit={handleSubmit(mycontrol)}>
                             <div className='row'>
 
-                                <div className='col-md-8'>
+                                <div className='col-sm-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>FullName</label>
                                         <input className='form-control' type='text' name='name'   {...register("name")}></input>
                                     </div>
                                 </div>
 
-                                <div className='col-md-8'>
+                                <div className='col-sm-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>EmailAddress</label>
                                         <input className='form-control' type='email'name='email' {...register("email")}></input>
@@ -81,7 +81,7 @@ function Adminregister() {
                                     </div>
                                 </div>
 
-                                <div className='col-md-8'>
+                                <div className='col-sm-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>Passward</label>
                                         <input className='form-control' name='passward' type='text' {...register('passward')}></input>
@@ -90,7 +90,7 @@ function Adminregister() {
 
 
 
-                                <div className='col-md-8'>
+                                <div className='col-sm-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>phoneNo</label>
                                         <input className='form-control' name='phone' type='text'  {...register('phone')}></input>
@@ -98,14 +98,14 @@ function Adminregister() {
                                 </div>
 
 
-                                <div className='col-md-8'>
+                                <div className='col-sm-8'>
                                     <div className='mb-3'>
                                         <label className='form-label'>age</label>
                                         <input className='form-control' name='age' type='number'  {...register('age')}></input>
                                     </div>
                                 </div>
 
-                                <div className='col-12 text-center'>
+                                <div className='col-sm-12 text-center'>
                                     <div className="mb-3">
 
                                         <input type="submit" className="btn btn-success" value="submit" />

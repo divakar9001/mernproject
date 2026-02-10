@@ -147,13 +147,13 @@ function Userproduct() {
           </div>
 
           <div
-            className="col-sm-8 border mt-2 p-2 oversk "
-            style={{ height: "100vh" }}
+            className="col-sm-8 border mt-2 p-2 oversk oversk1 "
+            style={{ height: "80vh" }}
           >
             <div className="row ">
               {mobile.map((p, index) => (
                 <Link
-                  to="#"
+                  to={"shop/"+p._id}
                   className="col-sm-12 norclass alldiv  mb-3 d-flex"
                   key={index}
                 >
@@ -171,17 +171,18 @@ function Userproduct() {
                   {/* Details */}
                   <div className="col-sm-5  p-2 text-start">
                     <h6>{p.name}</h6>
+                    <h6>{p.id}</h6>
                     <p className="mb-1">Brand: {p.brand}</p>
 
                     <p className="mb-1">Descriptions:{p.description}</p>
                     <p className="mb-1">numreview:{p.numreview}</p>
                     <p className="mb-1">
                       stocks:
-                      {p.stocks <= 60 ? (
+                      {p.stocks <= 60 ? 
                         <span className="text-danger tblink">{p.stocks}</span>
-                      ) : (
+                       : 
                         p.stocks
-                      )}
+                      }
                     </p>
                   </div>
 
@@ -200,3 +201,5 @@ function Userproduct() {
 }
 
 export default Userproduct;
+
+

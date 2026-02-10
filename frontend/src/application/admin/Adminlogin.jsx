@@ -74,15 +74,15 @@ export const Adminlogin = () => {
     return (
         <div className='container '>
             <div className='row justify-content-center'>
-                <div className='col-md-5 bg-light shadow p-5'>
+                <div className='col-sm-5 bg-light shadow p-5'>
                     <div className='container-fulid '>
                         <div className='row '>
-                            <div className='col-12 text-center'>
+                            <div className='col-sm-12 text-center'>
                                 <p className='h4 pb-4'>App login page</p>
                                 <ToastContainer />
                             </div>
                             <form onSubmit={handelsubmit}>
-                                <div className='col-12'>
+                                <div className='col-sm-12'>
                                     <div className='mb-3'>
 
                                         <label className="form-label">Enter your email</label>
@@ -90,14 +90,14 @@ export const Adminlogin = () => {
                                     </div>
                                 </div>
 
-                                <div className='col-12'>
+                                <div className='colsm--12'>
                                     <div className='mb-3'>
                                         <label className="form-label">Enter your password</label>
                                         <input type="passward" className='form-control' name='passward' value={data.passward} onChange={handler} />
                                     </div>
                                 </div>
 
-                                <div className='col-md-12 text-end '>
+                                <div className='col-sm-12 text-end '>
                                     <div className='mb-3 '>
                                         <button type="submit" className="btn btn-success ms-4">Login</button>
                                         <Link to="/register" className='ms-5 mt-4 top '>register now</Link>

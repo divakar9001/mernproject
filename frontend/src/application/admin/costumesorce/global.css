@@ -134,6 +134,7 @@ table {
 
 body {
   overflow: hidden;
+  
 }
 
 @media(max-width:695px) {
@@ -146,12 +147,14 @@ body {
   }
 }
 
-.oversk {
+/* .oversk {
   overflow: scroll;
   
-}
+} */
 .oversk1{
   overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: none;
 }
 
 .cus-another {
@@ -177,4 +180,19 @@ body {
 .alldiv{
   text-decoration: none;
   color: black;
+}
+
+.mouseho{
+  border: 1px solid black;
+  /* border-radius: 10px; */
+
+}
+
+.fontheight{
+  font-size: 101%;
+  font-weight: 480;
+}
+
+.button1{
+  width: 45%;
 }

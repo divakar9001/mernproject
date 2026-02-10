@@ -73,14 +73,13 @@ myapp.get("/singledata/:id", verifyuser, async (req, res) => {
 
 // myapp.get("/singledata/:id", verifyuser, async (req, res) => {
 //   try {
-//     const { id } = req.params;
+//     const  id  = req.params.id;
 
-//     
-
-//     const data = await myschema.findById(id); // ✅ IMPORTANT
+//    const data = await myschema.findOne({ _id: id });
+//  // ✅ IMPORTANT
 
 //     if (!data) {
-//       return res.status(404).json({ msg: "User not found" });
+//       return res.status(401).json({ msg: "User not found" });
 //     }
 
 //     res.status(200).json({
@@ -120,7 +119,7 @@ myapp.post("/login", async (req, res) => {
             return res.send({ msg: "password is not match", status: 420 });
         }
         if (email === 'divakarbug01@gmail.com' && matchPass) {
-            const usertoken = jwt.sign({ email: loginusers.email }, mykey, { expiresIn: '1m' });
+            const usertoken = jwt.sign({ email: loginusers.email }, mykey, { expiresIn: '5m' });
             res.set("authorization", `Bearer ${usertoken}`);
             return res.send({ msg: "admin", status: 220, token: usertoken });
 

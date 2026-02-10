@@ -12,7 +12,7 @@ function Userlanding() {
    
   // }
   return (
-    <div className="container-fluid oversk mt-2" style={{ height: "100vh" }}>
+    <div className="container-fluid oversk1 mt-2" style={{ height: "92vh" }}>
       <div
         className="row  justify-content-center  border text-center "
         style={{ height: "70vh" }}
@@ -43,6 +43,16 @@ function Userlanding() {
         </div>
         <h6 className="mt-4">Landing Pages made easy!</h6>
         <div className="col-sm-10 mt-3">
+          <p>
+            Our online shopping platform makes buying easy, fast, and secure.
+            Browse thousands of products, enjoy great deals, and get doorstep
+            delivery with trusted payment options.
+          </p>
+          <p>
+            Our online shopping platform makes buying easy, fast, and secure.
+            Browse thousands of products, enjoy great deals, and get doorstep
+            delivery with trusted payment options.
+          </p>
           <p>
             Our online shopping platform makes buying easy, fast, and secure.
             Browse thousands of products, enjoy great deals, and get doorstep
