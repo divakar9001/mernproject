@@ -3,7 +3,7 @@ const express = require('express');
 const prodrouting = express.Router();
 const schema1 = require('../schema/prdocutschema');
 
-prodrouting.get('/product',(req,res)=>{
+prodrouting.get('/',(req,res)=>{
     res.send("user find all data")
 });
 
