@@ -16,6 +16,9 @@ const schematype = new mongoose.Schema({
       type:Number  
     },
 
+    fileupload:{
+      type:String
+    }
     
 });
 

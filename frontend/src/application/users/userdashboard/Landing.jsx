@@ -14,7 +14,7 @@ function Landing() {
   const fetchdata = async () => {
     let token = localStorage.getItem("token");
     await axios
-      .get(`${API_URL}/myusers`, {
+      .get(`${API_URL}/myusers?lenght=10`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((d) => {
@@ -51,77 +51,102 @@ function Landing() {
     <div className="container-fluid ">
       <div className="row text-center mt-2">
         <div className="col-sm-12 h2 "> All Data Of Userlist</div>
-        <div className="row ">
-          <div className="col-sm-12 ">
-            <ToastContainer />
-          </div>
-        </div>
-        
-          <div
-  className="col-sm-12 border oversk"
-  style={{ maxHeight: "80vh" }}
->
-
+        <div className="row oversk1 " style={{ maxHeight: "75vh" }}>
+          <div className="col-sm-12 border ">
             <div className="row  ">
-            <table className="table ">
-              <thead>
-                <tr>
-                  <th scope="col">Id</th>
-                  <th scope="col">fullName</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">age</th>
-                  <th scope="col">phone</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {set.map((r) => {
-                  return (
-                    <tr className="" key={r._id}>
-                      <td
-                        className="changesize "
-                        onClick={(e) => e.target.classList.toggle("changesize")}
-                      >
-                        {r._id}
-                      </td>
-                      <td>{r.name}</td>
-                      <td
-                        className="changesize"
-                        onClick={(e) => e.target.classList.toggle("changesize")}
-                      >
-                        {r.email}
-                      </td>
-                      <td>{r.age}</td>
-                      <td>{r.phone}</td>
-                      {/* <td>{r.passward}</td> */}
-                      <td>
-                        <Link
-                          to={"show/" + r._id}
-                          className="btn btn-sm  btn-info "
+              <table className="table ">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">fullName</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">age</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {set.map((r) => {
+                    return (
+                      <tr className="" key={r._id}>
+                        <td
+                          className="changesize "
+                          onClick={(e) =>
+                            e.target.classList.toggle("changesize")
+                          }
                         >
-                          view
-                        </Link>
-                        <Link
-                          to={"edit/" + r._id}
-                          className="btn btn-sm btn-warning"
+                          {r._id}
+                        </td>
+                        <td>{r.name}</td>
+                        <td
+                          className="changesize"
+                          onClick={(e) =>
+                            e.target.classList.toggle("changesize")
+                          }
                         >
-                          edit
-                        </Link>
-                        <button
-                          type="button"
-                          className="btn btn-sm btn-danger"
-                          onClick={() => deleteuser(r._id)}
-                        >
-                          Del
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                          {r.email}
+                        </td>
+                        <td>{r.age}</td>
+                        <td>{r.phone}</td>
+                        {/* <td>{r.passward}</td> */}
+                        <td>
+                          <Link
+                            to={"show/" + r._id}
+                            className="btn btn-sm  btn-info "
+                          >
+                            view
+                          </Link>
+                          <Link
+                            to={"edit/" + r._id}
+                            className="btn btn-sm btn-warning"
+                          >
+                            edit
+                          </Link>
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-danger"
+                            onClick={() => deleteuser(r._id)}
+                          >
+                            Del
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className="page-item">
+              <Link className="page-link" to="#">
+                Previous
+              </Link>
+            </li>
+            <li className="page-item">
+              <Link className="page-link" to="#">
+                1
+              </Link>
+            </li>
+            <li className="page-item">
+              <Link className="page-link" to="#">
+                2
+              </Link>
+            </li>
+            <li className="page-item">
+              <Link className="page-link" to="#">
+                3
+              </Link>
+            </li>
+            <li className="page-item">
+              <Link className="page-link" to="#">
+                Next
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );

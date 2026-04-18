@@ -1,11 +1,17 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const upload = require('../middleware/multerConfig');
+const multer = require('multer')
+// console.log(multer)
 const verifyuser = require('../middleware/authnticate');
 const myapp = express.Router();
 const myschema = require("../schema/appschema");
 const mykey = "qqwewerweuyyszewdwdws";
+
+
+
 
 myapp.get("/", (req, res) => {
     res.send("welcome to express")
@@ -13,16 +19,62 @@ myapp.get("/", (req, res) => {
 
 
 
-myapp.post("/registerusers", async (req, res) => {
+// myapp.post("/registerusers", upload.single("fileupload"), async (req, res) => {
+//     try {
+//         const fileupload = req.file;
+//         const { name, email, passward, phone, age } = req.body;
+        
+//         console.log(fileupload)
+
+//         if (!email || !passward) {
+//             return res.send({
+//                 msg: "email and password are required",
+//                 status: 321
+//             });
+
+//         }
+
+//         const isRegister = await myschema.findOne({ email });
+
+//         if (isRegister) {
+//             return res.send({ msg: "Already Register", status: 322 });
+//         }
+
+//         const hashPass = await bcrypt.hash(passward, 10);
+
+//         // const data =  myschema({
+//         //     name,
+//         //     email,
+//         //     passward: hashPass,
+//         //     phone,
+//         //     age
+//         // });
+
+//         // await data.save();
+//         await myschema({ name, email, passward: hashPass, phone, age,fileupload: file ? file.filename : null }).save();
+//         return res.send({ msg: "User registered successfully", status: 221 });
+//     }
+//     catch (error) {
+//         console.error(error);
+//         return res.status(500).send({
+//             msg: "Server error",
+//             status: 500
+//         });
+//     }
+// })
+
+myapp.post("/registerusers", upload.single("fileupload"), async (req, res) => {
     try {
+        const file = req.file; 
         const { name, email, passward, phone, age } = req.body;
+
+        console.log(file);
 
         if (!email || !passward) {
             return res.send({
                 msg: "email and password are required",
                 status: 321
             });
-
         }
 
         const isRegister = await myschema.findOne({ email });
@@ -33,16 +85,15 @@ myapp.post("/registerusers", async (req, res) => {
 
         const hashPass = await bcrypt.hash(passward, 10);
 
-        // const data =  myschema({
-        //     name,
-        //     email,
-        //     passward: hashPass,
-        //     phone,
-        //     age
-        // });
+        await myschema({
+            name,
+            email,
+            passward: hashPass,
+            phone,
+            age,
+            fileupload: file ? file.filename : null 
+        }).save();
 
-        // await data.save();
-        await myschema({ name, email, passward: hashPass, phone, age }).save();
         return res.send({ msg: "User registered successfully", status: 221 });
     }
     catch (error) {
@@ -52,8 +103,7 @@ myapp.post("/registerusers", async (req, res) => {
             status: 500
         });
     }
-})
-
+});
 myapp.get("/singledata/:id", verifyuser, async (req, res) => {
 
     const id = req.params.id;
@@ -71,27 +121,7 @@ myapp.get("/singledata/:id", verifyuser, async (req, res) => {
 
 });
 
-// myapp.get("/singledata/:id", verifyuser, async (req, res) => {
-//   try {
-//     const  id  = req.params.id;
 
-//    const data = await myschema.findOne({ _id: id });
-//  // ✅ IMPORTANT
-
-//     if (!data) {
-//       return res.status(401).json({ msg: "User not found" });
-//     }
-
-//     res.status(200).json({
-//       msg: "User data",
-//       singledata: data
-//     });
-
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ msg: "Server error" });
-//   }
-// });
 
 myapp.delete("/deleteuser/:id", async (req, res) => {
     const id = req.params.id;
@@ -129,40 +159,7 @@ myapp.post("/login", async (req, res) => {
     }
 });
 
-// myapp.post("/login", async (req, res) => {
-//     const { email, passward } = req.body;
 
-//     if (email === '' || passward === '') {
-//         return res.send({ msg: "email and passward must have", status: 413 });
-//     }
-
-//     const loginusers = await myschema.findOne({ email });
-
-//     // CHECK IF USER EXISTS
-//     if (!loginusers) {
-//         return res.send({ msg: 'data not found', status: 413 });
-//     }
-
-//     // COMPARE PASSWORD (correct order)
-//     const matchPass = await bcrypt.compare(passward, loginusers.passward);
-
-//     if (!matchPass) {
-//         return res.send({ msg: "password is not match", status: 420 });
-//     }
-
-//     // SUCCESS
-//     res.send({ msg: "data found successfully", status: 201 });
-// });
-
-
-
-// myapp.patch('/update/:id', verifyuser, async (req, res) => {
-//     const id = req.params.id;
-//     const mydata = { name, email, passward, phone, age } = req.body;
-//     const updateuser = await myschema.findByIdAndUpdate(id, mydata, { new: true });
-//     res.send({ msg: "user update successfully", status: 251, data: updateuser });
-
-// })
 
 myapp.patch('/update/:id', verifyuser, async (req, res) => {
     const id = req.params.id;
@@ -187,5 +184,7 @@ myapp.get("/myusers", verifyuser, async (req, res) => {
     const users = await myschema.find();
     res.send({ msg: 'userlist', data: users, status: 205 });
 });
+
+
 
 module.exports = myapp;

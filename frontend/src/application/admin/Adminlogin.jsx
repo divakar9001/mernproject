@@ -34,6 +34,7 @@ export const Adminlogin = () => {
             submit.preventDefault();
            var a =  await axios.post(`${API_URL}/login`, data).then((d) => {
                 console.log(d)
+                console.log('this is the datta divakar wala',data)
 
                 if (d.data.status === 420) {
                     toast.warn(d.data.msg);
@@ -112,4 +113,3 @@ export const Adminlogin = () => {
         </div >
     )
 }
-

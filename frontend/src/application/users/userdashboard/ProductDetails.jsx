@@ -1,18 +1,28 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { API_URL } from "../../admin/costumesorce/Appcontroal";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineTruck } from "react-icons/ai";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import AddToCard from "./AddToCard";
+import { addToProduct, updateCounter } from "../../../globalshare/Action";
+
 function ProductDetails() {
   const [cid, setproduct] = useState({});
+  const [search, safeSearch] = useSearchParams();
+
+  const [counter, setCounter] = useState(0);
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   const getprodata = async () => {
-    console.log(id);
+    // console.log(id);
+
     await axios.get(`${API_URL}/singleproduct/${id}`).then((phonedata) => {
       console.log(phonedata.data.data);
       setproduct(phonedata.data.data);
@@ -21,15 +31,36 @@ function ProductDetails() {
 
   useEffect(() => {
     getprodata();
-  }, []);
+  }, [id]);
 
-  const setlocation = ()=>{
+  const setlocation = () => {
     alert("i am locations");
-     var c= window.navigator;
-     c.geolocation.getCurrentPosition((d)=>{
-        alert(d.coords.latitude,d.coords.longitude)
-     })
-  }
+    var c = window.navigator;
+    c.geolocation.getCurrentPosition((d) => {
+      alert(d.coords.latitude, d.coords.longitude);
+    });
+  };
+
+  const addCard = (Idcard) => {
+    if (Idcard) {
+      sessionStorage.setItem("productId", Idcard);
+    }
+
+    const sources = {
+      image: cid.image,
+      price: cid.price,
+      name: cid.name,
+      _id: Idcard,
+    };
+
+    dispatch(addToProduct(sources));
+    console.log("this is the price", sources.price);
+
+    const newCount = counter + 1;
+    setCounter(newCount);
+    dispatch(updateCounter(newCount));
+  };
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -38,10 +69,8 @@ function ProductDetails() {
           style={{ heigth: "100vh" }}
         >
           <div className="col-sm-6   ">
-            <div
-              className="col-sm-12  oversk1 "
-              style={{ height: "88vh" }}
-            >
+            <div className="col-sm-12  oversk1 " style={{ height: "88vh" }}>
+              {/* <AddToCard productData = {cid}></AddToCard> */}
               {cid.image?.map((img, index) => {
                 return (
                   <img
@@ -81,21 +110,44 @@ function ProductDetails() {
                   <IoLocationOutline className="fs-6" />
                   Location not set
                 </h5>
-                <h6 className="mt-1 text-primary" onClick={setlocation}>Select delivary location<IoIosArrowForward /></h6>
+                <h6 className="mt-1 text-primary" onClick={setlocation}>
+                  Select delivary location
+                  <IoIosArrowForward />
+                </h6>
               </div>
               <div className="bg-light-opacity-25 mb-2 border rounded ms-3 col-sm-10 ">
-                <h6><AiOutlineTruck className="fs-6"/> Delivary by 12 feb,tue</h6>
+                <h6>
+                  <AiOutlineTruck className="fs-6" /> Delivary by 12 feb,tue
+                </h6>
                 <h6 className="text-danger ms-3 lh-1">order in 01h 20m 50s</h6>
               </div>
 
               <div className="bg-light-opacity-25 mb-2 border rounded ms-3 hl-base col-sm-10 ">
-                    <p className="fontheight">1 year Warranty On Handset And 6 Months Warranty On Accessries</p>
+                <p className="fontheight">
+                  1 year Warranty On Handset And 6 Months Warranty On Accessries
+                </p>
               </div>
             </div>
             <div className="col-sm-10 ms-3 mt-2  d-flex ">
-                <button className="btn w-20 border ms-1 " ><IoCartOutline /></button>
-                <button className="btn  border button1 ms-1"><h6>Buy with EMI <br />From 723/m</h6></button>
-                <button className="btn btn-warning button1 ms-1"><h6>Buy now <br /> at ₹{cid.price}</h6></button>
+              <Link to>
+                <button
+                  className="btn w-20 border ms-1"
+                  onClick={() => addCard(cid?._id)}
+                >
+                  <IoCartOutline />
+                </button>
+              </Link>
+              <button className="btn  border button1 ms-1">
+                <h6>
+                  Buy with EMI <br />
+                  From 723/m
+                </h6>
+              </button>
+              <button className="btn btn-warning button1 ms-1">
+                <h6>
+                  Buy now <br /> at ₹{cid.price}
+                </h6>
+              </button>
             </div>
           </div>
         </div>

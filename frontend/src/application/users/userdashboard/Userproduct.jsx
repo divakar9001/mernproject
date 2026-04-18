@@ -7,9 +7,7 @@ function Userproduct() {
   const [mobile, setMobile] = useState([]);
   const [a, b] = useState({ price: "", brand: "", rating: "" });
   const [allMobile, setAllMobile] = useState([]);
-  // const [dublicatebrand, setduplicatebrand] = useState([]);
-  // const [dublicaterating, setduplicaterating] = useState([]);
-  const [options, setOptions] = useState({ price: [], brand: [], rating: [] });
+  const [options, setOptions] = useState({ price: [], brand: [], rating: [] }); // handel all the filter element
 
   const getmobile = async () => {
     try {
