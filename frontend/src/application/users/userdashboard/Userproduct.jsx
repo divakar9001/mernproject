@@ -14,6 +14,7 @@ function Userproduct() {
       const res = await axios.get(`${API_URL}/alldata`);
       // console.log(res.data.data);
       var data = res.data.data;
+      console.log(data)
       setMobile(data);
       setAllMobile(data);
       setOptions({
@@ -151,19 +152,16 @@ function Userproduct() {
             <div className="row ">
               {mobile.map((p, index) => (
                 <Link
-                  to={"shop/"+p._id}
+                  to={"shop/" + p._id}
                   className="col-sm-12 norclass alldiv  mb-3 d-flex"
                   key={index}
                 >
                   <div className="col-sm-3  p-2">
-                    {p.image?.map((img, i) => (
-                      <img
-                        key={i}
-                        src={img}
-                        alt="mobile"
-                        className="img-fluid mb-2"
-                      />
-                    ))}
+                    <img
+                      src={p.image[0]}
+                      alt="mobile"
+                      className="img-fluid mb-2"
+                    />
                   </div>
 
                   {/* Details */}
@@ -176,11 +174,11 @@ function Userproduct() {
                     <p className="mb-1">numreview:{p.numreview}</p>
                     <p className="mb-1">
                       stocks:
-                      {p.stocks <= 60 ? 
+                      {p.stocks <= 60 ? (
                         <span className="text-danger tblink">{p.stocks}</span>
-                       : 
+                      ) : (
                         p.stocks
-                      }
+                      )}
                     </p>
                   </div>
 
@@ -199,5 +197,3 @@ function Userproduct() {
 }
 
 export default Userproduct;
-
-

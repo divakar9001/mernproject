@@ -4,12 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 require('./database/mydb')
-const app = express();     // <-- THIS IS THE PRIORITY (CORRECT PLACE)
-
+const app = express();     // THIS IS THE PRIORITY (CORRECT PLACE)
+const appRouting = require('./routing/approuting')
 app.use(express.json());
 app.use(cors());
 
-app.use(require('./routing/approuting'));
+app.use(appRouting);
 app.use(require('./routing/productRouting'));
 
 const port = process.env.PORT || 7700;
