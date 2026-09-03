@@ -1,4 +1,5 @@
 import { createSlice} from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
 
 const intialState = {
     allCardDetails:[],
@@ -7,6 +8,7 @@ const intialState = {
 const slices = createSlice({
     name:'card',
     initialState:intialState,
+    
 
     reducers:{
         addToProduct:(state,actions)=>{
@@ -23,6 +25,7 @@ const slices = createSlice({
         },
 
         removeItem:(state,actions)=>{
+            
             const id = actions.payload;
            
               const index  =state.allCardDetails.findIndex((item)=> item._id === id);

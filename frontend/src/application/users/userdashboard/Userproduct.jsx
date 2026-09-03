@@ -58,7 +58,7 @@ function Userproduct() {
 
   const getdata = (e) => {
     const { name, value } = e.target;
-    console.log(name);
+    console.log(name,value);
 
     b((a) => {
       return {
@@ -71,7 +71,7 @@ function Userproduct() {
       console.log("this is data");
       return (
         f.price == e.target.value ||
-        f.brand == e.target.value ||
+        f.brand === e.target.value ||
         f.numreview == e.target.value
       );
     });

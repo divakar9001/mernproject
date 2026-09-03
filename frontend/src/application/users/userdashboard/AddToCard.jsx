@@ -2,13 +2,16 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeItem } from '../../../globalshare/Action';
+import { useNavigate } from 'react-router-dom';
 
 function AddToCard() {
     const allData = useSelector((state)=> state.card.allCardDetails);
     const dispatch = useDispatch();
+    const nsv = useNavigate()
 
     const removeFun = (delId)=>{
-        dispatch(removeItem(delId))
+        dispatch(removeItem(delId));
+        // nsv('userpage/phone/shop/:id')
     }
 
   return (

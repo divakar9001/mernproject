@@ -156,6 +156,12 @@ body {
   overflow-x: hidden;
   scrollbar-width: none;
 }
+.overregister{
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
 
 .cus-another {
   margin-left: 8%;
@@ -196,3 +202,4 @@ body {
 .button1{
   width: 45%;
 }
+

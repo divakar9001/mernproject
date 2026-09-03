@@ -273,12 +273,12 @@ function Adminregister() {
   };
 
   return (
-    <div className="container py-3 py-md-5">
+    <div className="container py-3 py-md-5  overregister " style={{height:'60vh'}}>
       <ToastContainer />
 
-      <div className="row border shadow rounded overflow-hidden">
+      <div className="row border shadow rounded ">
 
-        {/* ================= LEFT SIDE CONTENT ================= */}
+       
         <div className="col-12 col-lg-5 bg-light p-4 p-md-5">
 
           <div className="mb-4">
@@ -340,7 +340,7 @@ function Adminregister() {
 
         </div>
 
-        {/* ================= RIGHT SIDE FORM ================= */}
+        
         <div className="col-12 col-lg-7 p-4 p-md-5">
 
           <div className="text-center mb-4">
@@ -362,7 +362,7 @@ function Adminregister() {
 
             <div className="row">
 
-              {/* FULL NAME */}
+              
               <div className="col-12 col-md-6 mb-3">
 
                 <label className="form-label">
@@ -386,7 +386,7 @@ function Adminregister() {
 
               </div>
 
-              {/* EMAIL */}
+            
               <div className="col-12 col-md-6 mb-3">
 
                 <label className="form-label">
@@ -439,7 +439,7 @@ function Adminregister() {
 
               </div>
 
-              {/* PHONE */}
+              
               <div className="col-12 col-md-6 mb-3">
 
                 <label className="form-label">
@@ -492,7 +492,7 @@ function Adminregister() {
 
               </div>
 
-              {/* FILE UPLOAD */}
+              
               <div className="col-12 col-md-6 mb-3">
 
                 <label className="form-label">
@@ -516,7 +516,6 @@ function Adminregister() {
 
               </div>
 
-              {/* BUTTONS */}
               <div className="col-12 mt-3">
 
                 <div className="d-flex flex-column flex-sm-row gap-2 justify-content-center">
